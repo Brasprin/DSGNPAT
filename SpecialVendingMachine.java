@@ -4,20 +4,11 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-/**
- * The class Special vending machine extends regular vending machine
- */
 public class SpecialVendingMachine extends RegularVendingMachine {
 
     private Map<Integer, VendingSlot> components;
     private boolean machineCreated;
 
-    /**
-     *
-     * Special vending machine
-     *
-     * @return public
-     */
     public SpecialVendingMachine() {
 
         super();
@@ -25,24 +16,12 @@ public class SpecialVendingMachine extends RegularVendingMachine {
         machineCreated = true;
     }
 
-    /**
-     *
-     * Add component
-     *
-     * @param item     the item.
-     * @param quantity the quantity.
-     */
     public void addComponent(Item item, int quantity) {
 
         VendingSlot slot = new VendingSlot(item, quantity);
         components.put(components.size() + 1, slot);
     }
 
-    /**
-     *
-     * Display components
-     *
-     */
     private void displayComponents() {
 
         JOptionPane.showMessageDialog(null,"--- Available Components ---");
@@ -58,12 +37,6 @@ public class SpecialVendingMachine extends RegularVendingMachine {
 
     @Override
 
-    /**
-     *
-     * Dispense item
-     *
-     * @param slotNumber the slot number.
-     */
     public void dispenseItem(int slotNumber) {
 
         // Check if the item is not meant to be sold individually
@@ -117,32 +90,17 @@ public class SpecialVendingMachine extends RegularVendingMachine {
     // Add any additional methods and attributes specific to the
     // SpecialVendingMachine
 
-    /**
-     * Creates a Special Vending Machine based on the number of slots and capacity.
-     * <p>
-     * Creates a Special Vending Machine based on the number of slots
-     * and capacity the user inputs. Then asks the user what items would the user
-     * like
-     * to store, set the price of the item, and input how many calories each item
-     * has.
-     *
-     * @param scanner user input
-     */
     public void createSpecialVendingMachine(Scanner scanner) {
 
         int slots;
         int capacity;
 
         do {
-            //System.out.print("Enter the number of slots (must be at least 8): ");
-            //slots = scanner.nextInt();
             String presetChoice = JOptionPane.showInputDialog(null, "Enter the number of slots (must be at least 8): ");
             slots = Integer.parseInt(presetChoice);
         } while (slots < 8);
 
         do {
-            //System.out.print("Enter the capacity per slot (must be at least 10): ");
-            //capacity = scanner.nextInt();
             String presetChoice = JOptionPane.showInputDialog(null, "Enter the capacity per slot (must be at least 10): ");
             capacity = Integer.parseInt(presetChoice);
         } while (capacity < 10);
@@ -153,18 +111,11 @@ public class SpecialVendingMachine extends RegularVendingMachine {
             int itemCalories;
 
             JOptionPane.showMessageDialog(null,"\n--- Slot " + i + " ---");
-            //System.out.print("Enter the item name: ");
-            //scanner.nextLine(); // Consume the newline character left by previous nextInt()
-            //itemName = scanner.nextLine(); // Use nextLine() to read the whole line with spaces
             itemName = JOptionPane.showInputDialog(null, "Enter the item name: ");
 
-            //System.out.print("Enter the item price: $");
-            //itemPrice = scanner.nextDouble();
             String itemPriceInput = JOptionPane.showInputDialog(null, "Enter the item price: $");
             itemPrice = Double.parseDouble(itemPriceInput);
 
-            //System.out.print("Enter the item calories: ");
-            //itemCalories = scanner.nextInt();
             String itemCaloriesInput = JOptionPane.showInputDialog(null, "Enter the item calories: ");
             itemCalories = Integer.parseInt(itemCaloriesInput);
 
@@ -179,12 +130,6 @@ public class SpecialVendingMachine extends RegularVendingMachine {
     }
 
     // Method to add preset items to the Special Vending Machine
-
-    /**
-     *
-     * Add preset items
-     *
-     */
     public void addPresetItems() {
 
         addItem(1, "Vegie Sandwich", 1.99, 100, true);
@@ -211,39 +156,18 @@ public class SpecialVendingMachine extends RegularVendingMachine {
     }
 
     // Add a setMachineCreated method to set the machineCreated flag
-
-    /**
-     *
-     * Sets the machine created
-     *
-     * @param machineCreated the machine created.
-     */
     public void setMachineCreated(boolean machineCreated) {
 
         this.machineCreated = machineCreated;
     }
 
     // Add a getter method for the isMachineCreated flag
-
-    /**
-     *
-     * Is machine created
-     *
-     * @return boolean
-     */
     public boolean isMachineCreated() {
 
         return this.machineCreated;
     }
 
     @Override
-
-    /**
-     *
-     * Test vending machine
-     *
-     * @param scanner the scanner.
-     */
     public void testVendingMachine(Scanner scanner) {
 
         if (!isMachineCreated) {
@@ -283,21 +207,6 @@ public class SpecialVendingMachine extends RegularVendingMachine {
 
             JOptionPane.showMessageDialog(null,"This item can only be purchased as part of a customized product.");
             return;
-            /*
-             * // Custom sandwich creation logic
-             * System.out.println("--- Custom Sandwich Creation ---");
-             * 
-             * Item sandwich = createCustomSandwich(scanner, slotNumber);
-             * 
-             * if (sandwich != null) {
-             * dispenseItem(slotNumber); // Dispense the custom sandwich as an individual
-             * item
-             * System.out.println("Total Price: $" + sandwich.getPrice());
-             * System.out.println("Total Calories: " + sandwich.getCalories());
-             * } else {
-             * System.out.println("Failed to create the custom sandwich.");
-             * }
-             */
 
         } else {
             // Step 3: Proceed with the item selection and dispensing for individual items
@@ -307,70 +216,7 @@ public class SpecialVendingMachine extends RegularVendingMachine {
         JOptionPane.showMessageDialog(null,"\nSpecial Vending Machine transaction completed!");
     }
 
-    /**
-     *
-     * Create custom sandwich
-     *
-     * @param scanner      the scanner.
-     * @param selectedSlot the selected slot.
-     * @return Item
-     */
-    private Item createCustomSandwich(Scanner scanner, int selectedSlot) {
-
-        Map<Item, Integer> chosenComponents = new HashMap<>();
-
-        for (Map.Entry<Integer, VendingSlot> entry : components.entrySet()) {
-            int slotNumber = entry.getKey();
-            VendingSlot slot = entry.getValue();
-
-            if (slotNumber == selectedSlot) {
-                // Skip the selected item, as it will be treated as the custom sandwich
-                continue;
-            }
-
-            Item component = slot.getItem();
-            String qty = JOptionPane.showInputDialog(null,"Enter the quantity of " + component.getName() + " to add to the sandwich: ");
-            int quantity = Integer.parseInt(qty);
-
-            if (quantity > slot.getQuantity()) {
-                JOptionPane.showMessageDialog(null,"Not enough " + component.getName() + " in stock!");
-                return null;
-            }
-
-            chosenComponents.put(component, quantity);
-        }
-
-        double totalCalories = 0;
-        double totalPrice = 0;
-
-        JOptionPane.showMessageDialog(null,"\n--- Sandwich Preparation ---");
-        for (Map.Entry<Item, Integer> entry : chosenComponents.entrySet()) {
-            Item component = entry.getKey();
-            int quantity = entry.getValue();
-
-            totalCalories += component.getCalories() * quantity;
-            totalPrice += component.getPrice() * quantity;
-
-            JOptionPane.showMessageDialog(null,"Adding " + quantity + " " + component.getName() + " to the sandwich...");
-        }
-
-        // Create the custom sandwich as a new item
-        Item sandwich = new Item("Custom Sandwich", totalPrice, (int) totalCalories, true);
-        return sandwich;
-    }
-
     @Override
-
-    /**
-     *
-     * Add item
-     *
-     * @param slotNumber     the slot number.
-     * @param itemName       the item name.
-     * @param itemPrice      the item price.
-     * @param itemCalories   the item calories.
-     * @param individualItem the individual item.
-     */
     public void addItem(int slotNumber, String itemName, double itemPrice, int itemCalories, boolean individualItem) {
 
         Item sandwich = new Item(itemName, itemPrice, itemCalories, individualItem);
