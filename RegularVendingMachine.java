@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
-public class RegularVendingMachine extends JFrame {
+public class RegularVendingMachine extends JFrame implements VendingMachineInterface  {
     protected Map<Integer, Item> items;
     protected Map<Integer, Integer> stock;
     private Map<Double, Integer> money;

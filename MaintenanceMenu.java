@@ -3,7 +3,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class MaintenanceMenu {
-    private RegularVendingMachine vendingMachine;
+    private VendingMachineInterface vendingMachine;
     private Scanner scanner;
 
     /**
@@ -12,7 +12,7 @@ public class MaintenanceMenu {
      * @param vendingMachine    function call for RegularVendingMachine
      * @param scanner   user input
      */
-    public MaintenanceMenu(RegularVendingMachine vendingMachine, Scanner scanner) {
+    public MaintenanceMenu(VendingMachineInterface vendingMachine, Scanner scanner) {
         this.vendingMachine = vendingMachine;
         this.scanner = scanner;
     }
@@ -30,12 +30,6 @@ public class MaintenanceMenu {
         do {
             JOptionPane.showMessageDialog(null, 
             "\n------ Maintenance Menu ------\n1. Restock Items\n2. Set Item Price\n3. Collect Money\n4. Replenish Change\n5. Print Transaction Summary\n6. Exit Maintenance Menu");
-            //System.out.println("1. Restock Items");
-            //System.out.println("2. Set Item Price");
-            //System.out.println("3. Collect Money");
-            //System.out.println("4. Replenish Change");
-            //System.out.println("5. Print Transaction Summary");
-            //System.out.println("6. Exit Maintenance Menu");
             String choices = JOptionPane.showInputDialog(null,"Enter your choice: ");
             maintenanceChoice = Integer.parseInt(choices);
 

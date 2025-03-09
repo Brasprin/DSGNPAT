@@ -110,10 +110,12 @@ public class VendingMachineFactoryDriver
             int machineChoice = scanner.nextInt();
 
             if (machineChoice == 1 && regularVendingMachine != null) {
-                MaintenanceMenu maintenanceMenu = new MaintenanceMenu(regularVendingMachine, scanner);
+                VendingMachineInterface adapter = new VendingMachineAdapter(regularVendingMachine);
+                MaintenanceMenu maintenanceMenu = new MaintenanceMenu(adapter, scanner);
                 maintenanceMenu.startMaintenanceMenu();
             } else if (machineChoice == 2 && specialVendingMachine != null) {
-                MaintenanceMenu maintenanceMenu = new MaintenanceMenu(specialVendingMachine, scanner);
+                VendingMachineInterface adapter = new VendingMachineAdapter(specialVendingMachine);
+                MaintenanceMenu maintenanceMenu = new MaintenanceMenu(adapter, scanner);
                 maintenanceMenu.startMaintenanceMenu();
             } else {
                 System.out.println("Invalid choice or vending machine not created.\n");
